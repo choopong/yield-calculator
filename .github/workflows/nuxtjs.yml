@@ -52,7 +52,6 @@ jobs:
           node-version: "24"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
       - name: Setup Pages
-        id: pages
         uses: actions/configure-pages@v5
         with:
           # Automatically inject router.base in your Nuxt configuration file and set
@@ -73,10 +72,6 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Static HTML export with Nuxt
         run: ${{ steps.detect-package-manager.outputs.manager }} run generate
-        env:
-          # Serve assets from the repo subpath (e.g. /yield-calculator/) since
-          # this is a GitHub Pages project site, not a user/org root site.
-          NUXT_APP_BASE_URL: ${{ steps.pages.outputs.base_path }}/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
