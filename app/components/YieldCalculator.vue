@@ -58,7 +58,7 @@ const yieldPercent = computed(() => {
     </div>
 
     <div class="field">
-      <label for="cost">Cost</label>
+      <label for="cost">Cost (per month)</label>
       <input id="cost" :value="cost.display.value" @input="cost.onInput" type="text" inputmode="decimal" placeholder="0" />
     </div>
 
