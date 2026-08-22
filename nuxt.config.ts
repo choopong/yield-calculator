@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   app: {
     head: {
-      title: 'Yield Calculator'
+      titleTemplate: 'Yield Calculator'
     }
   },
   features: {
