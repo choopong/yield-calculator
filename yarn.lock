@@ -6839,9 +6839,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yield-calcuator@workspace:.":
+"yield-calculator@workspace:.":
   version: 0.0.0-use.local
-  resolution: "yield-calcuator@workspace:."
+  resolution: "yield-calculator@workspace:."
   dependencies:
     nuxt: "npm:^4.5.2"
     vue: "npm:^3.5.41"
