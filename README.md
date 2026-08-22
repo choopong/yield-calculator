@@ -11,7 +11,7 @@ Make sure to install dependencies:
 
 ```bash
 mise install
-bun install
+yarn install
 ```
 
 ## Development Server
@@ -19,7 +19,7 @@ bun install
 Start the development server on `http://localhost:3000`:
 
 ```bash
-bun run dev
+yarn dev
 ```
 
 ## Production
@@ -27,12 +27,12 @@ bun run dev
 Build the application for production:
 
 ```bash
-bun run build
+yarn build
 ```
 
 Locally preview production build:
 
 ```bash
-bun run preview
+yarn preview
 ```
 
