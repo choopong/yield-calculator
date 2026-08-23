@@ -82,7 +82,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:
-          path: ./.output/public/
+          path: ./.output/public
           include-hidden-files: true
 
   # Deployment job
