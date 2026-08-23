@@ -5,7 +5,6 @@ export default defineNuxtConfig({
   modules: ['@vite-pwa/nuxt'],
   css: ['~/assets/css/main.css'],
   app: {
-    baseURL: "/yield-calculator",
     head: {
       title: 'Yield Calculator',
       meta: [{ name: 'theme-color', content: '#121212' }],
