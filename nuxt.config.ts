@@ -8,7 +8,7 @@ export default defineNuxtConfig({
       title: 'Yield Calculator'
     }
   },
-  features: {
-    inlineStyles: true // Inlines all global and component CSS into the HTML head
-  }
+  // features: {
+  //   inlineStyles: true // Inlines all global and component CSS into the HTML head
+  // }
 })
