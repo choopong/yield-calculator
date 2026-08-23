@@ -19,7 +19,7 @@ export default defineNuxtConfig({
     registerType: 'autoUpdate',
     manifest: {
       name: 'Yield Calculator',
-      short_name: 'Yield Calc',
+      short_name: 'Yield Cal',
       description: 'Calculate yield per year in percentage based on price, cost, and income per month.',
       theme_color: '#121212',
       background_color: '#121212',
