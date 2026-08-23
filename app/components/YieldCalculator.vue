@@ -64,32 +64,36 @@ const roiPeriod = computed(() => {
 
 function formatRoiPeriod(period: { years: number; months: number }): string {
   const parts: string[] = []
-  if (period.years > 0) parts.push(`${period.years} ${period.years === 1 ? 'year' : 'years'}`)
-  if (period.months > 0) parts.push(`${period.months} ${period.months === 1 ? 'month' : 'months'}`)
+  if (period.years > 0)
+    parts.push(`${period.years} ${period.years === 1 ? 'year' : 'years'}`)
+  if (period.months > 0)
+    parts.push(`${period.months} ${period.months === 1 ? 'month' : 'months'}`)
   return parts.join(' ')
 }
 </script>
 
 <template>
-  <div class="yield-calculator">
+  <div class="mx-auto my-8 max-w-90 rounded-lg border border-surface-border bg-surface p-6 font-sans text-foreground">
     <h1>Yield Calculator</h1>
 
-    <div class="field">
-      <label for="price">Price</label>
+    <div class="mb-4 flex flex-col">
+      <label for="price" class="mb-1 font-semibold text-muted">Price</label>
       <input id="price" :value="price.display.value" @input="price.onInput" type="text" inputmode="decimal"
-        placeholder="0" />
+        placeholder="0"
+        class="rounded border border-input-border bg-input p-2 text-base text-foreground placeholder-subtle focus:border-accent focus:outline-none" />
     </div>
-    <div class="field">
-      <label for="cost">Cost (per month)</label>
-      <input id="cost" :value="cost.display.value" @input="cost.onInput" type="text" inputmode="decimal"
-        placeholder="0" />
+    <div class="mb-4 flex flex-col">
+      <label for="cost" class="mb-1 font-semibold text-muted">Cost (per month)</label>
+      <input id="cost" :value="cost.display.value" @input="cost.onInput" type="text" inputmode="decimal" placeholder="0"
+        class="rounded border border-input-border bg-input p-2 text-base text-foreground placeholder-subtle focus:border-accent focus:outline-none" />
     </div>
-    <div class="field">
-      <label for="income">Income (per month)</label>
+    <div class="mb-4 flex flex-col">
+      <label for="income" class="mb-1 font-semibold text-muted">Income (per month)</label>
       <input id="income" :value="income.display.value" @input="income.onInput" type="text" inputmode="decimal"
-        placeholder="0" />
+        placeholder="0"
+        class="rounded border border-input-border bg-input p-2 text-base text-foreground placeholder-subtle focus:border-accent focus:outline-none" />
     </div>
-    <div class="result">
+    <div class="mt-6 text-center text-xl">
       <div>
         <strong>Yield: </strong>
         <span v-if="yieldPercent !== null">{{ yieldPercent.toFixed(2) }}%</span>
@@ -103,52 +107,3 @@ function formatRoiPeriod(period: { years: number; months: number }): string {
     </div>
   </div>
 </template>
-
-<style scoped>
-.yield-calculator {
-  max-width: 360px;
-  margin: 2rem auto;
-  padding: 1.5rem;
-  background-color: #1e1e1e;
-  border: 1px solid #333;
-  border-radius: 8px;
-  font-family: system-ui, sans-serif;
-  color: #f0f0f0;
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1rem;
-}
-
-.field label {
-  margin-bottom: 0.25rem;
-  font-weight: 600;
-  color: #cccccc;
-}
-
-.field input {
-  padding: 0.5rem;
-  border: 1px solid #444;
-  border-radius: 4px;
-  font-size: 1rem;
-  background-color: #2a2a2a;
-  color: #f0f0f0;
-}
-
-.field input::placeholder {
-  color: #777777;
-}
-
-.field input:focus {
-  outline: none;
-  border-color: #6c9eff;
-}
-
-.result {
-  margin-top: 1.5rem;
-  font-size: 1.25rem;
-  text-align: center;
-}
-</style>

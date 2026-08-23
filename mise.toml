@@ -1,3 +1,6 @@
 [tools]
 node = "24"
 yarn = "latest"
+
+[env]
+NUXT_APP_BASE_URL = ""

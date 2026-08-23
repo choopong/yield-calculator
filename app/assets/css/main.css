@@ -1,8 +1,20 @@
-html,
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #121212;
-  color: #f0f0f0;
-  color-scheme: dark;
+@import 'tailwindcss';
+
+@theme {
+  --color-background: #121212;
+  --color-foreground: #f0f0f0;
+  --color-surface: #1e1e1e;
+  --color-surface-border: #333333;
+  --color-muted: #cccccc;
+  --color-input: #2a2a2a;
+  --color-input-border: #444444;
+  --color-subtle: #777777;
+  --color-accent: #6c9eff;
+}
+
+@layer base {
+  html,
+  body {
+    @apply m-0 scheme-dark bg-background text-foreground;
+  }
 }
