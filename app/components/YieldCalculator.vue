@@ -27,11 +27,11 @@ function useThousandsInput() {
 
     numeric.value = parseNumericValue(cleaned)
     display.value = formatted
+    // Vue skips the :value patch when the ref is unchanged, so sync the DOM directly too
+    input.value = formatted
 
-    nextTick(() => {
-      const pos = Math.max(formatted.length - cursorFromEnd, 0)
-      input.setSelectionRange(pos, pos)
-    })
+    const pos = Math.max(formatted.length - cursorFromEnd, 0)
+    input.setSelectionRange(pos, pos)
   }
 
   return { numeric, display, onInput }
