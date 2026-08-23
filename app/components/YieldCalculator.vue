@@ -20,7 +20,8 @@ function useThousandsInput() {
 
   function onInput(event: Event) {
     const input = event.target as HTMLInputElement
-    const cursorFromEnd = input.value.length - (input.selectionStart ?? input.value.length)
+    const cursorFromEnd =
+      input.value.length - (input.selectionStart ?? input.value.length)
 
     const cleaned = input.value.replace(/[^\d.]/g, '')
     const formatted = formatWithThousands(cleaned)
@@ -44,8 +45,29 @@ const income = useThousandsInput()
 // yield = ((income - cost) * 12) / price, expressed as a percentage
 const yieldPercent = computed(() => {
   if (!price.numeric.value) return null
-  return (((income.numeric.value ?? 0) - (cost.numeric.value ?? 0)) * 12 / price.numeric.value) * 100
+  return (
+    ((((income.numeric.value ?? 0) - (cost.numeric.value ?? 0)) * 12) /
+      price.numeric.value) *
+    100
+  )
 })
+
+// time to recoup the price from net monthly income, rounded up to whole months
+const roiPeriod = computed(() => {
+  if (!price.numeric.value) return null
+  const netMonthly = (income.numeric.value ?? 0) - (cost.numeric.value ?? 0)
+  if (netMonthly <= 0) return null
+
+  const totalMonths = Math.ceil(price.numeric.value / netMonthly)
+  return { years: Math.floor(totalMonths / 12), months: totalMonths % 12 }
+})
+
+function formatRoiPeriod(period: { years: number; months: number }): string {
+  const parts: string[] = []
+  if (period.years > 0) parts.push(`${period.years} ${period.years === 1 ? 'year' : 'years'}`)
+  if (period.months > 0) parts.push(`${period.months} ${period.months === 1 ? 'month' : 'months'}`)
+  return parts.join(' ')
+}
 </script>
 
 <template>
@@ -54,23 +76,30 @@ const yieldPercent = computed(() => {
 
     <div class="field">
       <label for="price">Price</label>
-      <input id="price" :value="price.display.value" @input="price.onInput" type="text" inputmode="decimal" placeholder="0" />
+      <input id="price" :value="price.display.value" @input="price.onInput" type="text" inputmode="decimal"
+        placeholder="0" />
     </div>
-
     <div class="field">
       <label for="cost">Cost (per month)</label>
-      <input id="cost" :value="cost.display.value" @input="cost.onInput" type="text" inputmode="decimal" placeholder="0" />
+      <input id="cost" :value="cost.display.value" @input="cost.onInput" type="text" inputmode="decimal"
+        placeholder="0" />
     </div>
-
     <div class="field">
       <label for="income">Income (per month)</label>
-      <input id="income" :value="income.display.value" @input="income.onInput" type="text" inputmode="decimal" placeholder="0" />
+      <input id="income" :value="income.display.value" @input="income.onInput" type="text" inputmode="decimal"
+        placeholder="0" />
     </div>
-
     <div class="result">
-      <strong>Yield: </strong>
-      <span v-if="yieldPercent !== null">{{ yieldPercent.toFixed(2) }}%</span>
-      <span v-else>—</span>
+      <div>
+        <strong>Yield: </strong>
+        <span v-if="yieldPercent !== null">{{ yieldPercent.toFixed(2) }}%</span>
+        <span v-else>—</span>
+      </div>
+      <div>
+        <strong>ROI within: </strong>
+        <span v-if="roiPeriod">{{ formatRoiPeriod(roiPeriod) }}</span>
+        <span v-else>—</span>
+      </div>
     </div>
   </div>
 </template>
