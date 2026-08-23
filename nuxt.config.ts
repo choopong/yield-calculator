@@ -9,9 +9,9 @@ export default defineNuxtConfig({
       title: 'Yield Calculator',
       meta: [{ name: 'theme-color', content: '#121212' }],
       link: [
-        { rel: 'icon', href: '/favicon.ico', sizes: '48x48' },
-        { rel: 'icon', href: '/logo.svg', sizes: 'any', type: 'image/svg+xml' },
-        { rel: 'apple-touch-icon', href: '/apple-touch-icon-180x180.png' }
+        { rel: 'icon', href: `${process.env.NUXT_APP_BASE_URL}/favicon.ico`, sizes: '48x48' },
+        { rel: 'icon', href: `${process.env.NUXT_APP_BASE_URL}/logo.svg`, sizes: 'any', type: 'image/svg+xml' },
+        { rel: 'apple-touch-icon', href: `${process.env.NUXT_APP_BASE_URL}/apple-touch-icon-180x180.png` }
       ]
     }
   },
