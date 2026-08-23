@@ -3,7 +3,6 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   app: {
-    baseURL: '/yield-calculator/',
     head: {
       title: 'Yield Calculator'
     }
