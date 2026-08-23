@@ -51,7 +51,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nuxt-build-
       - name: Install dependencies
-        run: yarn set version berry && yarn install
+        run: yarn install --network-timeout 100000
       - name: Static HTML export with Nuxt
         run: yarn generate
         env:
